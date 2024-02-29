@@ -1,12 +1,11 @@
 import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Iterator;
 
 public class SHS{
+    
+    
     LinkedList<Couple> [] tableau; // table de hachage
     int count=0; // taille de la table de hachage
-    static final T=0.7; //T est un seuil qui permet de déterminer si la table de hachage doit être agrandie ou non
-
+    private static final int T = 0; //T est un seuil qui permet de déterminer si la table de hachage doit être agrandie ou non
     public boolean add(String s){
         int hash = s.hashCode(); // hashcode est une méthode qui permet de générer un nombre unique pour chaque chaine de caractèrese basant sur le nombre de caractères de la chaine et leur valeur ASCII. ce nombre correspond à l'index de la chaine dans la table de hachage. hash correspond donc à l'index de la chaine s dans la table de hachage. il est utilisé pour déterminer l'emplacement où stocker ou récupérer la valeur associée à cette clé.
         int index = hash%tableau.length; // on calcule l'index de la chaine s dans la table de hachage.
@@ -44,6 +43,18 @@ public class SHS{
             }
             tableau=nouveauTableau; // on remplace la table de hachage par la nouvelle table de hachage
         }
-         
     }
+    public static void main(String[] args) {
+        SHS s = new SHS();
+        s.add("hello");
+        s.add("world");
+        s.add("worlds");
+        System.out.println(s.contains("hello"));
+        System.out.println(s.contains("world"));
+        System.out.println(s.contains("worlds"));
+    }
+    
 }
+
+    
+
