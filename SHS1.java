@@ -1,5 +1,6 @@
 package hashcode;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class SHS1 {
@@ -138,12 +139,58 @@ public class SHS1 {
 
         test1.afficheSHS();
 
-        // modifier le nombre (on peut mettre 1000, 10000, 100000, 1000000, etc)
-        for (int i=0; i<1000; i++) {
+
+
+        // temps d'exécution méthode add
+/*
+        long tempsExec[] = new long[100000];
+        tempsExec[0] = 0;
+
+        for (int j=1000; j<100000; j=j+1000) {
+            long t0 = System.currentTimeMillis();
+            for (int i=0; i<j; i++) {
+                test1.add("t" + i);
+            }
+            long t1 = System.currentTimeMillis();
+            long te = t1 - t0;
+            System.out.println("Temps exécution pour " + j + " : " + te);
+            tempsExec[j/1000] = te;
+        }
+*/
+
+        // temps d'exécution méthode add Collections
+/*
+        for (int j=1000; j<15000; j=j+1000) {
+            HashSet hs = new HashSet<>();
+            long t0 = System.currentTimeMillis();
+            for (int i=0; i<j; i++) {
+                hs.add("t" + i);
+            }
+            long t1 = System.currentTimeMillis();
+            long te = t1 - t0;
+            System.out.println("Temps exécution pour " + j + " : " + te);
+        }
+*/
+
+
+
+        // temps d'exécution méthode contains
+
+        // on insère d'abord 15000 éléments, sans prendre en compte le temps d'exécution
+        for (int i = 0; i<15000; i++) {
             test1.add("t" + i);
         }
 
-        test1.afficheSHS();
+        // on teste la méthode contains
+        for (int j=1000; j<15000; j=j+1000) {
+            long t0 = System.currentTimeMillis();
+            for (int i=0; i<j; i++) {
+                test1.contains("t" + i);
+            }
+            long t1 = System.currentTimeMillis();
+            long te = t1 - t0;
+            System.out.println("Temps exécution pour " + j + " : " + te);
+        }
 
         // tester le temps pour toutes ces valeurs et ajouter des graphes (trouver une librairie similaire à Pandas en Python)
         // il faut faire ça pour StringHashSet, StringArrayList et StringTreeSet
